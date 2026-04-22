@@ -11,11 +11,11 @@ export class Product {
 
                         ]
   constructor(private http : HttpClient){}
-  getAllProducts():Obeservable<any>{
+  getAllProducts(){
     return this.http.get("http://localhost:8883/products");
     }
   deleteProduct(product :any){
-    this.product=this.product.filter((p:any)=>p.id !=product.id );}
+    return this.http.delete("http://localhost:8883/products/"+product.id)
     }
 
 
