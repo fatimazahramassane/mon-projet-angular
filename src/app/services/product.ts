@@ -10,9 +10,9 @@ export class Product {
                         {id : 3,name : "Smart Phone", price : 1100 , selected:true}
 
                         ]
-  constructor(){}
-  getAllProducts(){
-    return this.products;
+  constructor(private http : HttpClient){}
+  getAllProducts():Obeservable<any>{
+    return this.http.get("http://localhost:8883/products");
     }
   deleteProduct(product :any){
     this.product=this.product.filter((p:any)=>p.id !=product.id );}
