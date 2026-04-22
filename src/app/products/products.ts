@@ -18,12 +18,24 @@ export class Products implement OnInit{
 
     }
   getAllProducts(){
-     this.product =this.productService.getAllProducts();
+     this.product =this.productService.getAllProducts().subscribe({
+       next: resp => {
+         this.product =resp ;},
+       error : err => {
+         console.log(err);
+         }
+       });
 
     }
   handleDelete(product:any):{
     let v = confirm("etes vous sure de la supprmier ");
     if(v==true){
-      this.productService.deleteProduct(product);
+      this.productService.deleteProduct(product).subscribe({
+         next: value=> {
+                 this.getAllProducts();},
+               error : err => {
+                 console.log(err);
+                 }
+        });
       this.getAllProducts();}
   }
