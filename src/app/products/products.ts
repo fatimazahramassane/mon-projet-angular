@@ -20,5 +20,10 @@ export class Products implement OnInit{
 
                        ]
 
+
     }
-  }
+  handleDelete(product:any):{
+    let v = confirm("etes vous sure de la supprmier ");
+    if(v==true){
+    this.product=this.product.filter((p:any)=>p.id !=product.id );}
+  }}
