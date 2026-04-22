@@ -10,20 +10,20 @@ import { Component } from '@angular/core';
 export class Products implement OnInit{
   products : any ;
 
-  constructor(){
+  constructor(private productService : ProductService){
+
     }
   ngOnInit(){
-    this.products =[
-                       {id : 1, name : "Computer", price : 2300 , selected:true}
-                       {id : 2,name : "Printer", price : 1200 , selected:false}
-                       {id : 3,name : "Smart Phone", price : 1100 , selected:true}
+     this.getAllProducts()
 
-                       ]
-
+    }
+  getAllProducts(){
+     this.product =this.productService.getAllProducts();
 
     }
   handleDelete(product:any):{
     let v = confirm("etes vous sure de la supprmier ");
     if(v==true){
-    this.product=this.product.filter((p:any)=>p.id !=product.id );}
-  }}
+      this.productService.deleteProduct(product);
+      this.getAllProducts();}
+  }
